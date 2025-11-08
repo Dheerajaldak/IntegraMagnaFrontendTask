@@ -1,0 +1,737 @@
+/* Color Palette from Resources/colors.png */
+:root {
+  /* LIGHT THEME (Default) */
+  --color-main-bg: #f9f3ee;
+  --color-dark-text-1: #273440;
+  --color-secondary-bg: #c1bab8;
+  --color-panel-bg: #d8d1cb;
+  --color-dark-text-2: #1e2b38;
+  --color-gold-highlight: #c6a77d;
+  --color-gradient-purple: #5c3563;
+  --color-gradient-brown: #884533;
+  --color-footer-bg: #f8efe6;
+  --color-footer-border: #e2d4c5;
+
+  /* Fluid Typography - using clamp for responsiveness */
+  --font-size-title-min: 2.5rem;
+  --font-size-title-max: 6rem;
+  --font-size-subtitle: clamp(1rem, 0.5vw + 1rem, 1.25rem);
+  --font-size-nav: clamp(0.75rem, 0.6vw + 0.5rem, 1rem);
+  --font-size-card-title: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
+  --font-size-footer: clamp(0.8rem, 0.5vw + 0.5rem, 0.9rem);
+
+  --transition-speed: 0.3s;
+}
+
+/* DARK THEME Overrides */
+.dark-theme {
+  --color-main-bg: #1e1e1e; /* Dark Background */
+  --color-dark-text-1: #d8d8d8; /* Light Text */
+  --color-secondary-bg: #4a4a4a;
+  --color-panel-bg: #333333;
+  --color-dark-text-2: #ffffff; /* White Text */
+  --color-gold-highlight: #ffc76d; /* Brighter Gold */
+  --color-gradient-purple: #9b59b6;
+  --color-gradient-brown: #d35400;
+  --color-footer-bg: #282828;
+  --color-footer-border: #444444;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--color-main-bg);
+  color: var(--color-dark-text-2);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-speed);
+}
+
+/* --- Layout Structure with CSS Grid (Requirement 2 & 3) --- */
+
+.page-container {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+  padding: 0 clamp(0.75rem, 3vw, 2.5rem);
+
+  background-size: cover;
+  background-position: center bottom;
+  background-blend-mode: multiply;
+  background-color: var(--color-main-bg);
+  transition: background-color var(--transition-speed);
+}
+
+/* HEADER STYLES */
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding: 1.5rem 0;
+  font-size: var(--font-size-nav);
+  border-bottom: 1px solid var(--color-panel-bg);
+  transition: border-bottom-color var(--transition-speed);
+}
+
+.logo-container {
+  padding-right: 2rem;
+}
+
+.logo-star {
+  width: 3rem;
+  height: 3rem;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+.nav-item:hover {
+  color: var(--color-gold-highlight);
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.auth-separator {
+  color: var(--color-dark-text-2);
+  font-weight: 500;
+  transition: color var(--transition-speed);
+}
+
+/* Toggle Button Styling */
+.btn-toggle {
+  background: var(--color-panel-bg);
+  color: var(--color-dark-text-2);
+  border: none;
+  padding: 0.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.1rem;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+}
+.icon-dark,
+.icon-light {
+  position: absolute;
+  transition: transform 0.3s ease-in-out;
+}
+/* Hide the correct icon based on the theme */
+.light-theme .icon-dark {
+  transform: translateY(150%);
+}
+.dark-theme .icon-light {
+  transform: translateY(-150%);
+}
+.dark-theme .icon-dark {
+  transform: translateY(0);
+}
+.light-theme .icon-light {
+  transform: translateY(0);
+}
+
+.btn {
+  padding: 0.3rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+  cursor: pointer;
+}
+
+.btn-signup {
+  background-color: var(--color-dark-text-2);
+  color: var(--color-main-bg);
+  border: 1px solid var(--color-dark-text-2);
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed), border-color var(--transition-speed);
+}
+
+.btn-login {
+  background-color: transparent;
+  color: var(--color-dark-text-2);
+  border: 1px solid var(--color-dark-text-2);
+  padding: 0.3rem 1.2rem;
+  border-radius: 20px;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed), border-color var(--transition-speed);
+}
+
+/* Hover Interaction 1 (Buttons) */
+.btn-signup:hover {
+  background-color: var(--color-gold-highlight);
+  border-color: var(--color-gold-highlight);
+  color: var(--color-dark-text-2);
+}
+.btn-login:hover {
+  background-color: var(--color-dark-text-2);
+  color: var(--color-main-bg);
+}
+
+/* MAIN HERO SECTION STYLES */
+.hero {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  padding-top: 1rem;
+  align-items: start;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(
+    var(--font-size-title-min),
+    7vw + 1rem,
+    var(--font-size-title-max)
+  );
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+/* Text coloring and gradients */
+.title-unlock {
+  display: block;
+  color: var(--color-gradient-purple);
+  font-family: "Great Vibes", cursive; /* ✅ use font-family instead of font-style */
+  font-size: clamp(1.5rem, 2vw + 0.5rem, 3rem);
+  letter-spacing: 0.1rem;
+  font-weight: 700;
+}
+
+.title-digital {
+  display: block;
+  color: transparent;
+  background-image: url("Resources/textbg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.title-renaissance {
+  display: block;
+  color: transparent;
+  /* background-image: linear-gradient(
+    to right,
+    var(--color-gold-highlight),
+    var(--color-gradient-brown)
+  ); */
+  background-image: url("Resources/textbg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-subtitle);
+  max-width: 85%;
+  margin-bottom: 3rem;
+  color: var(--color-dark-text-2);
+  font-weight: 500;
+}
+
+/* NFT CARD GRID (Style matching image) */
+.nft-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns for desktop */
+  grid-template-rows: auto;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
+}
+
+.nft-card {
+  background-color: #f4e2c0;
+  border-radius: 90px 90px 0 0;
+  border: 2px solid #fbeecb;
+  padding: 0 1rem 0 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform var(--transition-speed),
+    box-shadow var(--transition-speed), background-color var(--transition-speed),
+    border-color var(--transition-speed);
+  cursor: pointer;
+}
+
+/* Hover Interaction 2 (Cards) */
+.nft-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.nft-image-wrapper {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.nft-image {
+  max-height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Specific card image width adjustment... */
+.nft-card-bear .nft-image {
+  max-width: 100px;
+}
+.nft-card-lion .nft-image {
+  max-width: 80px;
+}
+.nft-card-cats .nft-image {
+  max-width: 90px;
+}
+
+/* Adjust title/author div spacing */
+.nft-title {
+  font-size: var(--font-size-card-title);
+  font-weight: 700;
+  color: black;
+}
+
+.nft-author {
+  font-size: 0.8rem;
+  font-weight: 600;
+ color: black;
+}
+
+/* NFT PRICE div STYLING */
+.nft-price {
+  width: calc(100% + 2rem);
+  margin: 0.5rem -0.25rem 0 -0.25rem;
+  background-color: var(--color-footer-bg);
+  border-radius: 40px 40px 0 0;
+  padding: 0.75rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-gold-highlight);
+  display: flex;
+  justify-content: center;
+  transition: background-color var(--transition-speed);
+}
+.start-button-container {
+  grid-column: 4 / 5;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.btn-start {
+  background-image: url("Resources/startbg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #eea761;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--transition-speed),
+    color var(--transition-speed);
+  padding-right: 4.5rem;
+  font-weight: 700;
+}
+
+.btn-start::after {
+  content: "▶";
+  position: absolute;
+  right: 1.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+}
+
+.btn-start:hover {
+  background-color: var(--color-gold-highlight);
+  color: wheat;
+}
+
+/* HERO RIGHT - IMAGE COMPOSITION */
+.hero-right {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  height: 100%;
+}
+
+.image-composition {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+/* UPDATED HAND AND STONE POSITIONING (Larger size) */
+.hand-sculpture {
+  position: absolute;
+  top: 0;
+  right: 5%;
+  width: 105%;
+  max-width: 580px;
+  height: auto;
+  z-index: 2;
+  transform: rotate(18deg);
+}
+
+.floating-stone {
+  position: absolute;
+  top: -1rem;
+  right: 50%;
+  width: 60%;
+  max-width: 350px;
+  height: auto;
+  z-index: 1;
+  transform: rotate(5deg);
+}
+
+.watermark {
+  position: absolute;
+  top: 40%;
+  right: -40%;
+  transform: translateY(-50%) rotate(90deg);
+  font-size: clamp(3rem, 10vw + 1rem, 10rem);
+  font-weight: 700;
+  /* Use a less opaque color for better contrast in dark mode */
+  color: rgba(43, 43, 43, 0.05);
+  font-family: "Playfair Display", serif;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+.dark-theme .watermark {
+  color: rgba(255, 255, 255, 0.03); /* Lighterwatermarkin dark mode */
+}
+
+/* --- BARCODE CONTAINER (Layout & Positioning) --- */
+.barcode-wrapper {
+  position: absolute;
+  top: 33rem;
+  left: -60%;
+  width: 180%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* --- BLURRY DIV (Visual Styling & Padding) --- */
+.blurydiv {
+  padding: 8px 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  transition: background-color var(--transition-speed);
+}
+
+.dark-theme .blurydiv {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.barcode-image {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 1;
+}
+
+.barcode-text {
+  font-family: "Roboto Mono", monospace;
+  font-size: 0.8rem;
+  color: var(--color-dark-text-2);
+}
+
+/* FOOTER STYLES from here */
+.footer {
+  background-color: var(--color-footer-bg);
+  border-top: 1px solid var(--color-footer-border);
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  transition: background-color var(--transition-speed),
+    border-top-color var(--transition-speed);
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-link {
+  color: var(--color-dark-text-1);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-size: var(--font-size-footer);
+}
+
+.footer-link:hover {
+  color: var(--color-gold-highlight);
+}
+
+/* Star separator */
+.footer-star {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-image: url("Resources/star.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 2px var(--color-gold-highlight));
+  opacity: 0.8;
+}
+
+/* --- Responsive Design start --- */
+
+/* Medium Screens (Tablet View - e.g., 768px to 1024px) */
+@media (max-width: 1024px) {
+  .header {
+    grid-template-columns: auto 1fr;
+    justify-content: space-between;
+  }
+  .nav {
+    display: none;
+  }
+  /* Remove the separator for cleaner tablet header */
+  .auth-separator {
+    display: none;
+  }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 2rem 0 4rem 0;
+  }
+  .hero-left {
+    margin-top: 20rem;
+  }
+  .hero-right {
+    order: -1;
+    height: 400px;
+    margin-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .hand-sculpture {
+    top: 0;
+    right: 9%;
+    width: 0%;
+    transform: rotate(0deg);
+  }
+
+  .floating-stone {
+    top: -1rem;
+    right: 15%;
+    width: 25%;
+  }
+
+  .watermark {
+    display: none;
+  }
+
+  .nft-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  /* BARCODE Tablet adjustment */
+  .barcode-wrapper {
+    position: relative;
+    top: 20rem;
+    left: -15%;
+    width: 100%;
+    margin-top: 2rem;
+    align-items: center;
+    /* display: none; */
+  }
+  .barcode-image {
+    max-width: 70%;
+    width: 70%;
+  }
+  .barcode-text {
+    text-align: center;
+  }
+
+  .footer {
+    padding: 1.5rem 0;
+  }
+
+  .footer-container {
+    gap: 1.5rem;
+  }
+}
+
+/* Small Screens (Mobile View - e.g., < 768px) */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 0 4%;
+  }
+
+  /* Hide login button and separator */
+  .btn-login,
+  .auth-separator {
+    display: none;
+  }
+  /* Center the remaining auth button (Sign Up) and the Toggle */
+  .auth-buttons {
+    gap: 0.5rem;
+  }
+
+  .hero {
+    padding: 1.5rem 0 3rem 0;
+  }
+
+  .hero-subtitle {
+    max-width: 100%;
+  }
+
+  .nft-cards-grid {
+    /* Mobile Grid: 2x2 Layout */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+
+  .nft-card-bear {
+    grid-column: 1 / 2;
+  }
+  .nft-card-lion {
+    grid-column: 2 / 3;
+  }
+  .nft-card-cats {
+    grid-column: 1 / 2;
+  }
+
+  .start-button-container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    align-items: flex-start;
+  }
+
+  .btn-start {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    padding-right: 3.5rem;
+  }
+  .btn-start::after {
+    right: 1rem;
+  }
+
+  .hero-right {
+    height: 300px;
+  }
+
+  .hand-sculpture {
+    bottom: -4rem;
+    width: 90%;
+    transform: rotate(30deg);
+  }
+
+  .floating-stone {
+    right: 35%;
+    width: 55%;
+    /* top: 0.2rem; */
+    margin-top: 1rem;
+  }
+
+  /* BARCODE Mobile adjustment */
+  .barcode-wrapper {
+    margin-top: 15rem;
+  }
+  .barcode-image {
+    max-width: 50%;
+    width: 80%;
+  }
+  .barcode-text {
+    word-break: break-all;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .footer {
+    padding: 1rem 0;
+  }
+  .footer-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .footer-star {
+    display: none;
+  }
+  .footer-link {
+    padding-top: 0;
+  }
+}
+
+/*
+* Toughest Moment-:
+* The class that took the longest to get right was **.nft-cards-grid** within the mobile media query.
+* **Why:** Achieving the specific 2x2 layout (Bear/Lion on Row 1, Cats/Start on Row 2) using *only* CSS
+   Grid required overriding the default flow with explicit `grid-column` and `grid-row` properties for the
+  `start-button-container` and `nft-card-cats`. Furthermore, ensuring the `start-button-container` was vertically
+  aligned with the top of the 'Cats' card (using `align-items: flex-start;`) instead of centered required careful balancing 
+  of the containing grid and flex properties, as all elements share the same grid row height.
+*/

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Integra Magna - Frontend Developer Technical Assignment</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@400;500;600;700&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <!-- cursue font cdn -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="light-theme">
+    <div class="page-container">
+      <header class="header">
+        <div class="logo-container">
+          <img src="Resources/star.png" alt="Star Icon" class="logo-star" />
+        </div>
+        <nav class="nav">
+          <a href="#home" class="nav-item">Home</a>
+          <a href="#marketplace" class="nav-item">Marketplace</a>
+          <a href="#artist" class="nav-item">Artist</a>
+          <a href="#community" class="nav-item">Community</a>
+        </nav>
+        <div class="auth-buttons">
+          <button
+            id="theme-toggle"
+            class="btn btn-toggle"
+            aria-label="Toggle Dark/Light Mode"
+            tabindex="0"
+            onclick="toggleTheme()"
+          >
+            <span class="icon-light"><i class="fa-solid fa-moon"></i></span>
+
+            <span class="icon-dark"><i class="fa-solid fa-sun"></i></span>
+          </button>
+
+          <a href="#signup" class="btn btn-signup">Sign up</a>
+          <span class="auth-separator">|</span>
+          <a href="#login" class="">Login</a>
+        </div>
+      </header>
+
+      <main class="hero">
+        <div class="hero-left">
+          <h1 class="hero-title">
+            <span class="title-unlock">Unlock</span>
+            <span class="title-digital">The Digital</span>
+            <span class="title-renaissance">Renaissance</span>
+          </h1>
+          <p class="hero-subtitle">
+            Join the revolution, embrace the digital revolution, and <br />
+            become a part of the ever-evolving NFT ecosystem.
+          </p>
+
+          <div class="nft-cards-grid">
+            <div class="nft-card nft-card-bear">
+              <div class="nft-image-wrapper">
+                <img
+                  src="Resources/beer.png"
+                  alt="Bear NFT"
+                  class="nft-image"
+                />
+              </div>
+              <p class="nft-title">Bear</p>
+              <p class="nft-author">by Andrew Garf</p>
+              <div class="nft-price">40$</div>
+            </div>
+
+            <div class="nft-card nft-card-lion">
+              <div class="nft-image-wrapper">
+                <img
+                  src="Resources/Lion.png"
+                  alt="Lion NFT"
+                  class="nft-image"
+                />
+              </div>
+              <p class="nft-title">Lion</p>
+              <p class="nft-author">by Jen Stark</p>
+              <div class="nft-price">80$</div>
+            </div>
+
+            <div class="nft-card nft-card-cats">
+              <div class="nft-image-wrapper">
+                <img src="Resources/Cat.png" alt="Cats NFT" class="nft-image" />
+              </div>
+              <p class="nft-title">Cats</p>
+              <p class="nft-author">by Casey Reas</p>
+              <div class="nft-price">120$</div>
+            </div>
+
+            <div class="start-button-container">
+              <a href="#start" class="btn btn-start">Start</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="image-composition">
+            <img
+              src="Resources/hand.png"
+              alt="Cracked Hand Sculpture"
+              class="hand-sculpture"
+            />
+            <img
+              src="Resources/stone.png"
+              alt="Mossy Rock"
+              class="floating-stone"
+            />
+            <span class="watermark">MIFYI3</span>
+
+            <div class="barcode-wrapper">
+              <div class="blurydiv">
+                <img
+                  src="Resources/Barcode.png"
+                  alt="Barcode"
+                  class="barcode-image"
+                />
+                <div class="barcode-text">0 712345 3256 67893255 678900</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-container">
+          <a href="#join" class="footer-link">Join the Revolution</a>
+          <span class="footer-star"></span>
+          <a href="#future" class="footer-link">Future is Here</a>
+          <span class="footer-star"></span>
+          <a href="#nftworld" class="footer-link">NFT World</a>
+          <span class="footer-star"></span>
+          <a href="#rule" class="footer-link">Rule the Game</a>
+          <span class="footer-star"></span>
+          <a href="#weare" class="footer-link">We Are NFT</a>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // Function to toggle between light and dark themes
+      function toggleTheme() {
+        const body = document.body;
+        body.classList.toggle("dark-theme");
+        body.classList.toggle("light-theme");
+        // Save preference to localStorage
+        localStorage.setItem(
+          "theme",
+          body.classList.contains("dark-theme") ? "dark" : "light"
+        );
+      }
+
+      // Check for saved theme preference on load
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme) {
+          document.body.classList.remove("light-theme", "dark-theme");
+          document.body.classList.add(savedTheme + "-theme");
+        }
+        // Add keyboard accessibility for the toggle button
+        const toggleButton = document.getElementById("theme-toggle");
+        toggleButton.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            toggleTheme();
+            event.preventDefault(); // Prevent default button action
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
