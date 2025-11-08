@@ -565,9 +565,9 @@ a {
     grid-template-columns: 1fr;
     padding: 2rem 0 4rem 0;
   }
-  .hero-left {
+  /* .hero-title {
     margin-top: 20rem;
-  }
+  } */
   .hero-right {
     order: -1;
     height: 400px;
@@ -599,20 +599,7 @@ a {
 
   /* BARCODE Tablet adjustment */
   .barcode-wrapper {
-    position: relative;
-    top: 20rem;
-    left: -15%;
-    width: 100%;
-    margin-top: 2rem;
-    align-items: center;
-    /* display: none; */
-  }
-  .barcode-image {
-    max-width: 70%;
-    width: 70%;
-  }
-  .barcode-text {
-    text-align: center;
+    display: none;
   }
 
   .footer {
@@ -698,7 +685,7 @@ a {
   }
 
   /* BARCODE Mobile adjustment */
-  .barcode-wrapper {
+  /* .barcode-wrapper {
     margin-top: 15rem;
   }
   .barcode-image {
@@ -709,7 +696,7 @@ a {
     word-break: break-all;
     white-space: normal;
     text-align: center;
-  }
+  } */
 
   .footer {
     padding: 1rem 0;
